@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加记录</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/static/css/layui.css" media="all">
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/static/js/layui.js"></script>
+    <style>
+        .form {
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-row form">
+    <form action="/add" method="post" class="layui-form layui-col-md6 layui-col-md-offset3" >
+        <div class="layui-form-item">
+            <label class="layui-form-label">人员:</label>
+            <div class="layui-input-block">
+                <select name="user" lay-filter="aihao">
+                    <option value="刘晓燕">刘</option>
+                    <option value="唐宗君">唐</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">金额:</label>
+            <div class="layui-input-block">
+                <input type="text" name="amount" value="0" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">类型:</label>
+            <div class="layui-input-block">
+                <select id="incomePay" name="incomePay" onchange="qie(this.value)" lay-filter="incomePay">
+                    <option value="1">收入</option>
+                    <option value="2">支出</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="source" class="layui-form-item">
+            <label class="layui-form-label">来源:</label>
+            <div class="layui-input-block">
+                <input type="text" name="source" value="" class="layui-input">
+            </div>
+        </div>
+
+        <div id="use" style="display: none" class="layui-form-item">
+            <label class="layui-form-label">用途:</label>
+            <div class="layui-input-block">
+                <input type="text" name="use" value="" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">必须:</label>
+            <div class="layui-input-block">
+                <select name="isMust">
+                    <option value="1">是</option>
+                    <option value="0">否</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">描述:</label>
+            <div class="layui-input-block">
+                <input type="text" name="describe" value="" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="color: red">密钥:</label>
+            <div class="layui-input-block">
+                <input type="password" name="pwd" value="" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-col-md-offset6">
+            <button class="layui-btn layui-btn-normal" type="submit" value="提交" lay-filter="*">
+                提交1
+            </button>
+        </div>
+    </form>
+</div>
+</body>
+<script>
+    layui.use('form', function () {
+        var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
+
+        form.on('select(incomePay)', function(data){
+            qie(data.value);
+        });
+
+    });
+
+    function qie(incomePay) {
+        if (incomePay == 1) {
+            $("#source").show();
+            $("#use").hide();
+        } else {
+            $("#source").hide();
+            $("#use").show();
+        }
+    }
+</script>
+</html>
