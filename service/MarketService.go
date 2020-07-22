@@ -9,7 +9,12 @@ import (
 //最新市场价格
 func ListNewMarket(name string) ([]models.NewMarket, error) {
 	list := make([]models.NewMarket, 0)
-	err := mysql.Engine.Desc("id").Find(&list)
+	var err error
+	if name == "" {
+		err = mysql.Engine.Desc("id").Find(&list)
+	} else {
+		err = mysql.Engine.Desc("id").Where("name=?", name).Find(&list)
+	}
 	return list, err
 }
 
