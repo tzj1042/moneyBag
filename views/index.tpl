@@ -22,7 +22,7 @@
 
     header,
     footer {
-      width: 960px;
+      width: 100%;
       margin-left: auto;
       margin-right: auto;
     }
@@ -41,34 +41,23 @@
     }
 
     header {
-      padding: 100px 0;
+      padding: 5px 0;
     }
 
     footer {
       line-height: 1.8;
       text-align: center;
-      padding: 50px 0;
+      padding: 30px 0;
       color: #999;
     }
 
     .description {
       text-align: center;
-      font-size: 16px;
     }
 
     a {
       color: #444;
       text-decoration: none;
-    }
-
-    .backdrop {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      box-shadow: inset 0px 0px 100px #ddd;
-      z-index: -1;
-      top: 0px;
-      left: 0px;
     }
   </style>
 </head>
@@ -76,19 +65,17 @@
 <body>
   <header>
     <h1 class="logo">{{.Mark}}</h1>
-    <div class="description">
-      Beego is a simple & powerful Go web framework which is inspired by tornado and sinatra.
-    </div>
+    <h2 class="description">
+       <a href="/add">{{.Title}}</a>
+    </h2>
   </header>
   <footer>
     <div class="author">
-      Official website:
-      <a href="http://{{.Website}}">{{.Website}}</a> /
+      点击跳转:
+      <a href="/add">{{.Website}}</a> /
       Contact me:
       <a class="email" href="mailto:{{.Email}}">{{.Email}}</a>
     </div>
   </footer>
-  <div class="backdrop"></div>
-
 </body>
 </html>

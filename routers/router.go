@@ -20,6 +20,7 @@ func init() {
 	}))
 	beego.NSRouter("*", &controllers.BaseController{}, "OPTIONS:Options")
 	beego.Router("/", &controllers.MainController{})
+	beego.Router("/index", &controllers.MainController{},"GET:Index")
 	beego.Router("/add", &controllers.MainController{})
 	beego.Router("/newMarket", &controllers.MarketController{})
 }
