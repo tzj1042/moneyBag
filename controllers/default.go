@@ -32,6 +32,9 @@ func (c *MainController) Post() {
 	incomePay, _ := c.GetInt("incomePay")
 	source := c.GetString("source")
 	use := c.GetString("use")
+	c.Data["Website"] = "返回大脸猫日记"
+	c.Data["Title"] = GetMotto()
+	c.Data["章鱼哥"] = "添加成功"
 	//验证
 	if pwd != "901224" {
 		c.Data["Mark"] = "密钥错误"
@@ -69,9 +72,7 @@ func (c *MainController) Post() {
 	bag := models.MoneyBag{User: user, Amount: amount, IncomePay: incomePay, Source: source, Use: use, Mark: mark, Describe: describe, IsMust: isMust}
 	fmt.Println(bag)
 	mysql.Engine.Insert(&bag)
-	c.Data["Website"] = "返回大脸猫日记"
 	c.Data["Email"] = "添加成功"
-	c.Data["Title"] = GetMotto()
 	c.TplName = "index.tpl"
 }
 
